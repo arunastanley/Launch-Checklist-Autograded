@@ -47,7 +47,9 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
     let fuelStatus = document.getElementById("fuelStatus");
+    let cargoStatus = document.getElementById("cargoStatus");
     let launchStatus = document.getElementById("launchStatus");
+   
 
             if(pilotNameValidation === "Empty" || copilotValidation === "Empty" || fuelValidation === "Empty" || cargoValidation ==="Empty") {
                 alert("All fields are required");
@@ -68,14 +70,25 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
             if(fuelLevel.value < 10000){
                 faultyItems.setAttribute("style","visibility:visible");
-                // faultyItems.style.visibility = 'visible';
                 fuelStatus.innerHTML = `Not enough fuel for the journey`;
                 launchStatus.setAttribute("style", "color:red;");
                 launchStatus.innerHTML= "Shuttle not ready for launch";
                 return "preventSubmission";
+            }else if(cargoLevel.value > 10000){
+                faultyItems.setAttribute("style","visibility:visible");
+                cargoStatus.innerHTML = `Too much mass for the shuttle to take off`;
+                launchStatus.setAttribute("style", "color:red;");
+                launchStatus.innerHTML= "Shuttle not ready for launch";
+                return "preventSubmission";
+            }else{
+                
+                launchStatus.setAttribute("style", "color:green;");
+                launchStatus.innerHTML= "Shuttle is ready for launch";
+                 return "preventSubmission";
+                }
             }
                 
-}
+
  
  async function myFetch() {
      let planetsReturned;
