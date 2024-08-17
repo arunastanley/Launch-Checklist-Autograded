@@ -99,11 +99,13 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
             //     alert("all Set");
             // }
 
-            if(fuelLevel > 10000 && cargoLevel < 10000){
-                alert("in if");
+            if(fuelLevel >= 10000 && cargoLevel <= 10000){
                 list.setAttribute("style","visibility:visible");
                 launchStatus.setAttribute("style", "color:green;");
                 launchStatus.innerHTML= "Shuttle is Ready for Launch";
+                fuelStatus.innerHTML = `Fuel level high enough for launch`;
+                cargoStatus.innerHTML = `Cargo mass low enough for launch`;
+
                 return "preventSubmission";
                 // setTimeout(allSet,10000);
 
